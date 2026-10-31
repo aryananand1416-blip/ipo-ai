@@ -1,0 +1,48 @@
+{
+  "project": {
+    "name": "IPO_AI",
+    "snapshot_version": "1.0",
+    "created_at": "2026-10-31T19:04:15.083522"
+  },
+  "model": {
+    "model_version": "IPO_AI_v1",
+    "prediction_stage": "end_of_day_2",
+    "target": "IPO_Day3_4_Avg_Return",
+    "production_threshold": 65,
+    "feature_count": 42,
+    "random_state": 42
+  },
+  "scoring": {
+    "positive_probability_weight": 0.5,
+    "predicted_return_weight": 0.3,
+    "momentum_weight": 0.2,
+    "risk_penalty_max": 30
+  },
+  "paths": {
+    "project_root": "/content/drive/MyDrive/IPO_AI",
+    "models": "/content/drive/MyDrive/IPO_AI/models",
+    "processed_data": "/content/drive/MyDrive/IPO_AI/data/processed",
+    "backend": "/content/drive/MyDrive/IPO_AI/app/backend",
+    "frontend": "/content/drive/MyDrive/IPO_AI/app/frontend"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "7efe5a76765cf63d456d39c44b6be3adb77092f4",
+    "remote": "origin",
+    "working_tree_clean": true
+  },
+  "production_files": [
+    "models/ipo_ai_v1_classifier.joblib",
+    "models/ipo_ai_v1_regressor.joblib",
+    "models/ipo_ai_v1_features.json",
+    "models/ipo_ai_v1_config.json",
+    "data/processed/database_model_feature_matrix.csv",
+    "app/backend/requirements.txt",
+    "app/backend/app/main.py",
+    "app/backend/app/routes/predict.py",
+    "app/backend/app/routes/ranking.py",
+    "app/backend/app/routes/ipos.py",
+    "app/backend/app/services/ml_service.py",
+    "app/frontend/index.html"
+  ]
+}
