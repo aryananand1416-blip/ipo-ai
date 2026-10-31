@@ -2,7 +2,8 @@
   "project": {
     "name": "IPO_AI",
     "snapshot_version": "1.0",
-    "created_at": "2026-10-31T19:04:15.083522"
+    "created_at": "2026-10-31T19:04:15.083522",
+    "snapshot_updated_at": "2026-10-31T19:12:43.035881+00:00"
   },
   "model": {
     "model_version": "IPO_AI_v1",
@@ -27,9 +28,9 @@
   },
   "git": {
     "branch": "main",
-    "commit": "7efe5a76765cf63d456d39c44b6be3adb77092f4",
+    "commit": "b4a7633bae24cdbbc9b5272e5bab111d09cc8ccb",
     "remote": "origin",
-    "working_tree_clean": true
+    "working_tree_clean": false
   },
   "production_files": [
     "models/ipo_ai_v1_classifier.joblib",
