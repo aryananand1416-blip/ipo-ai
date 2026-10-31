@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IPO AI — Smart IPO Ranking</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+.header {
+    background: linear-gradient(135deg, #111827, #1f2937);
+    color: white;
+    padding: 28px 5%;
+}
+
+.header-inner {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.subtitle {
+    margin-top: 6px;
+    color: #cbd5e1;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 28px auto;
+    padding: 0 20px;
+}
+
+.status-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.status {
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.online {
+    color: #15803d;
+    font-weight: 700;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 20px rgba(15,23,42,.05);
+}
+
+.card-title {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 9px;
+}
+
+.card-value {
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.toolbar {
+    background: white;
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 18px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+input, select {
+    padding: 11px 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    font-size: 14px;
+    outline: none;
+}
+
+input {
+    min-width: 260px;
+    flex: 1;
+}
+
+.table-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(15,23,42,.05);
+}
+
+.table-header {
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table-header h2 {
+    font-size: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+th {
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    padding: 14px;
+    text-align: left;
+}
+
+td {
+    padding: 15px 14px;
+    border-top: 1px solid #f1f5f9;
+    font-size: 14px;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+.rank {
+    font-weight: 800;
+}
+
+.score {
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.strong {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.watch {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.avoid {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.low {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.moderate {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.high {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.very-high {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.positive {
+    color: #15803d;
+    font-weight: 700;
+}
+
+.negative {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.loading {
+    padding: 40px;
+    text-align: center;
+    color: #64748b;
+}
+
+.error {
+    padding: 30px;
+    color: #b91c1c;
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    color: #64748b;
+    padding: 30px;
+    font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 22px 18px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    input {
+        min-width: 100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <div class="logo">🚀 IPO AI</div>
+        <div class="subtitle">
+            AI-powered Indian IPO ranking & Day 3–4 prediction
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="status-row">
+        <div class="status">
+            API:
+            <span id="apiStatus">Checking...</span>
+        </div>
+
+        <div class="status">
+            Model:
+            <strong id="modelVersion">—</strong>
+        </div>
+
+        <div class="status">
+            Prediction Stage:
+            <strong id="predictionStage">—</strong>
+        </div>
+    </div>
+
+    <section class="cards">
+
+        <div class="card">
+            <div class="card-title">Total IPOs</div>
+            <div class="card-value" id="totalIPOs">—</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Average AI Score</div>
+            <div class="card-value" id="avgScore">—</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Watch / Strong Watch</div>
+            <div class="card-value" id="watchCount">—</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Top AI Score</div>
+            <div class="card-value" id="topScore">—</div>
+        </div>
+
+    </section>
+
+    <section class="toolbar">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="🔎 Search IPO name..."
+        >
+
+        <select id="riskFilter">
+            <option value="">All Risk Levels</option>
+            <option value="LOW">Low</option>
+            <option value="MODERATE">Moderate</option>
+            <option value="HIGH">High</option>
+            <option value="VERY_HIGH">Very High</option>
+        </select>
+
+        <select id="signalFilter">
+            <option value="">All Signals</option>
+            <option value="STRONG WATCH">Strong Watch</option>
+            <option value="WATCH">Watch</option>
+            <option value="AVOID">Avoid</option>
+        </select>
+
+    </section>
+
+    <section class="table-card">
+
+        <div class="table-header">
+            <h2>🏆 IPO AI Ranking</h2>
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>IPO</th>
+                        <th>AI Score</th>
+                        <th>Probability</th>
+                        <th>Expected Return</th>
+                        <th>Risk</th>
+                        <th>Signal</th>
+                    </tr>
+                </thead>
+
+                <tbody id="ipoTable">
+
+                    <tr>
+                        <td colspan="7" class="loading">
+                            Loading IPO data...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div class="footer">
+    IPO AI v1 • End-of-Day-2 prediction model • For research/educational use
+</div>
+
+<script>
+
+const API_BASE = "http://127.0.0.1:8000";
+
+let allIPOs = [];
+
+async function loadDashboard() {
+
+    try {
+
+        const healthResponse =
+            await fetch(`${API_BASE}/health`);
+
+        const health =
+            await healthResponse.json();
+
+        document.getElementById("apiStatus").innerHTML =
+            '<span class="online">● ONLINE</span>';
+
+        document.getElementById("modelVersion").textContent =
+            health.model_version || "IPO_AI_v1";
+
+        const response =
+            await fetch(`${API_BASE}/ranking/?limit=100`);
+
+        const data =
+            await response.json();
+
+        allIPOs = data.ipos || [];
+
+        renderDashboard();
+
+    } catch (error) {
+
+        document.getElementById("apiStatus").innerHTML =
+            '<span style="color:#dc2626">● OFFLINE</span>';
+
+        document.getElementById("ipoTable").innerHTML =
+            `<tr>
+                <td colspan="7" class="error">
+                    Unable to connect to IPO AI backend.
+                </td>
+            </tr>`;
+
+        console.error(error);
+    }
+}
+
+function renderDashboard() {
+
+    const search =
+        document.getElementById("search").value.toLowerCase();
+
+    const risk =
+        document.getElementById("riskFilter").value;
+
+    const signal =
+        document.getElementById("signalFilter").value;
+
+    let filtered = allIPOs.filter(ipo => {
+
+        const name =
+            (ipo.IPO_Name || "").toLowerCase();
+
+        return (
+            name.includes(search) &&
+            (!risk || ipo.risk === risk) &&
+            (!signal || ipo.signal === signal)
+        );
+
+    });
+
+    filtered.sort(
+        (a,b) => (b.ai_score || 0) - (a.ai_score || 0)
+    );
+
+    document.getElementById("totalIPOs").textContent =
+        allIPOs.length;
+
+    if (allIPOs.length) {
+
+        const avg =
+            allIPOs.reduce(
+                (sum, ipo) => sum + (ipo.ai_score || 0),
+                0
+            ) / allIPOs.length;
+
+        document.getElementById("avgScore").textContent =
+            avg.toFixed(2);
+
+        document.getElementById("topScore").textContent =
+            Math.max(
+                ...allIPOs.map(ipo => ipo.ai_score || 0)
+            ).toFixed(2);
+
+        document.getElementById("watchCount").textContent =
+            allIPOs.filter(
+                ipo =>
+                    ipo.signal === "WATCH" ||
+                    ipo.signal === "STRONG WATCH"
+            ).length;
+
+        document.getElementById("predictionStage").textContent =
+            allIPOs[0].prediction_stage || "end_of_day_2";
+
+    }
+
+    const table =
+        document.getElementById("ipoTable");
+
+    if (!filtered.length) {
+
+        table.innerHTML =
+            `<tr>
+                <td colspan="7" class="loading">
+                    No IPOs found.
+                </td>
+            </tr>`;
+
+        return;
+    }
+
+    table.innerHTML =
+        filtered.map((ipo, index) => {
+
+            const score =
+                Number(ipo.ai_score || 0);
+
+            const probability =
+                Number(ipo.positive_probability || 0) * 100;
+
+            const predictedReturn =
+                Number(ipo.predicted_return || 0);
+
+            const riskClass =
+                (ipo.risk || "")
+                .toLowerCase()
+                .replace("_", "-");
+
+            let signalClass = "avoid";
+
+            if (ipo.signal === "STRONG WATCH")
+                signalClass = "strong";
+
+            else if (ipo.signal === "WATCH")
+                signalClass = "watch";
+
+            const returnClass =
+                predictedReturn >= 0
+                    ? "positive"
+                    : "negative";
+
+            return `
+                <tr>
+
+                    <td class="rank">
+                        #${index + 1}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${ipo.IPO_Name || "Unknown IPO"}
+                        </strong>
+                    </td>
+
+                    <td class="score">
+                        ${score.toFixed(2)}
+                    </td>
+
+                    <td>
+                        ${probability.toFixed(1)}%
+                    </td>
+
+                    <td class="${returnClass}">
+                        ${predictedReturn >= 0 ? "+" : ""}
+                        ${predictedReturn.toFixed(2)}%
+                    </td>
+
+                    <td>
+                        <span class="badge ${riskClass}">
+                            ${(ipo.risk || "UNKNOWN").replace("_", " ")}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge ${signalClass}">
+                            ${ipo.signal || "UNKNOWN"}
+                        </span>
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("");
+
+}
+
+document
+    .getElementById("search")
+    .addEventListener("input", renderDashboard);
+
+document
+    .getElementById("riskFilter")
+    .addEventListener("change", renderDashboard);
+
+document
+    .getElementById("signalFilter")
+    .addEventListener("change", renderDashboard);
+
+loadDashboard();
+
+</script>
+
+</body>
+</html>

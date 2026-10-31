@@ -1,0 +1,91 @@
+# ============================================================
+# IPO AI — Git Ignore Rules
+# ============================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs / temporary files
+*.log
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.vscode/
+.idea/
+
+# Large datasets
+*.csv
+*.parquet
+*.feather
+*.pkl
+
+# IPO AI generated data
+data/raw/
+data/processed/
+backtest/
+
+# Trained ML models
+models/*.joblib
+models/*.pkl
+models/*.pickle
+
+# Runtime / cache
+.cache/
+tmp/
+temp/
+
+# Local backend/frontend runtime files
+node_modules/
+dist/
+build/
+
+# Keep project structure documentation
+!data/.gitkeep
+!models/.gitkeep
+!backtest/.gitkeep
+
+# ============================================================
+# End
+# ============================================================
+
+# Raw historical market data
+data/bse_bhavcopy/
+data/nse_bhavcopy/
+data/raw/
+data/**/*.csv
+data/**/*.zip
+# Development step backups
+*.step*_backup
+*.step*_live_backup

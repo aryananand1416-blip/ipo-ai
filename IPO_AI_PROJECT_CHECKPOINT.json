@@ -1,0 +1,59 @@
+{
+  "project": "IPO AI",
+  "model_version": "IPO_AI_v1",
+  "last_completed_step": "5.10",
+  "next_step": "5.11",
+  "prediction_stage": "end_of_day_2",
+  "target": "IPO_Day3_4_Avg_Return",
+  "production_threshold": 65,
+  "backend": {
+    "source_path": "/content/ipo_ai_backend",
+    "drive_path": "/content/drive/MyDrive/IPO_AI/app/backend",
+    "host": "127.0.0.1",
+    "port": 8000,
+    "status": "verified"
+  },
+  "frontend": {
+    "source_path": "/content/ipo_ai_frontend",
+    "drive_path": "/content/drive/MyDrive/IPO_AI/app/frontend",
+    "host": "127.0.0.1",
+    "port": 8090,
+    "status": "verified"
+  },
+  "database": {
+    "path": "/content/drive/MyDrive/IPO_AI/app/data/ipo_ai.db",
+    "status": "verified"
+  },
+  "completed": [
+    "ML model freeze",
+    "FastAPI backend",
+    "ML prediction service",
+    "Prediction API",
+    "Ranking API",
+    "SQLite database",
+    "IPO API",
+    "Backend health verification",
+    "Frontend structure",
+    "Frontend HTML dashboard",
+    "Frontend server",
+    "Frontend backend connection",
+    "Dashboard API field mapping",
+    "Dashboard rendering verification"
+  ],
+  "step_5_10_verification": {
+    "frontend_http": 200,
+    "backend_health_http": 200,
+    "ipo_api_http": 200,
+    "dashboard_html_verified": true,
+    "live_data_verified": true,
+    "sample_ipo": "Allied Blenders and",
+    "sample_ipo_id": "703",
+    "sample_ai_score": 47.08,
+    "sample_probability": 0.4162,
+    "sample_predicted_return": -0.3577,
+    "sample_risk": "VERY_HIGH",
+    "sample_signal": "AVOID"
+  },
+  "resume_instruction": "Resume from Step 5.11. Do not recreate the ML model, backend, database, or basic frontend. Restore runtime paths from Drive if Colab runtime has restarted.",
+  "checkpoint_created": "2026-10-31T05:18:04.065128"
+}

@@ -1,0 +1,13 @@
+{
+  "model_version": "IPO_AI_v1",
+  "prediction_stage": "end_of_day_2",
+  "target": "IPO_Day3_4_Avg_Return",
+  "threshold": 65,
+  "positive_probability_weight": 0.5,
+  "predicted_return_weight": 0.3,
+  "momentum_weight": 0.2,
+  "risk_penalty_max": 30,
+  "feature_count": 42,
+  "training_rows": 770,
+  "random_state": 42
+}
