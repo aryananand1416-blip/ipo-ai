@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "fields": [
+    "timestamp",
+    "source",
+    "exchange",
+    "symbol",
+    "ipo_id",
+    "ipo_name",
+    "price",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "market_cap",
+    "status"
+  ],
+  "required": [
+    "timestamp",
+    "source",
+    "exchange",
+    "symbol"
+  ]
+}

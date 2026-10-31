@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "sources": {
+    "BSE": {
+      "enabled": true,
+      "type": "official",
+      "status": "connectivity_available",
+      "mode": "adapter"
+    },
+    "NSE": {
+      "enabled": true,
+      "type": "official",
+      "status": "direct_request_blocked",
+      "mode": "adapter"
+    },
+    "AUTHORIZED_API": {
+      "enabled": false,
+      "type": "licensed",
+      "status": "not_configured",
+      "mode": "adapter"
+    },
+    "TEST_SOURCE": {
+      "enabled": true,
+      "type": "test",
+      "status": "working",
+      "mode": "adapter"
+    }
+  }
+}

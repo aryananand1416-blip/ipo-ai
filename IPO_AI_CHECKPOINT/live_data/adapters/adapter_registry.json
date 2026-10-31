@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "created_at": "2026-10-31T20:22:49.902478+00:00",
+  "adapter_class": "SourceAdapter",
+  "standard_schema": "live_data_schema.json",
+  "registered_sources": [
+    "BSE",
+    "NSE",
+    "AUTHORIZED_API",
+    "TEST_SOURCE"
+  ]
+}

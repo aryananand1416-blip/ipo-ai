@@ -1,0 +1,37 @@
+{
+  "project": "IPO_AI",
+  "model_version": "IPO_AI_v1",
+  "prediction_stage": "end_of_day_2",
+  "current_phase": "Phase 22 - Live Data Ingestion Engine",
+  "completed_steps": [
+    "22.1 Live-data folder structure",
+    "22.2 NSE/BSE connectivity test",
+    "22.3 Live-data schema",
+    "22.4 Validator",
+    "22.5 Raw -> Validated pipeline",
+    "22.6 Adapter configuration",
+    "22.7 Source adapter + registry",
+    "22.8 Adapter normalization test",
+    "22.9 JSONL snapshot",
+    "22.10 SQLite database creation"
+  ],
+  "next_step": "22.11 Insert validated snapshot into SQLite and verify full chain",
+  "important_files": {
+    "schema": "/content/drive/MyDrive/IPO_AI/live_data/state/live_data_schema.json",
+    "validator_state": "/content/drive/MyDrive/IPO_AI/live_data/state/validator_state.json",
+    "adapter_config": "/content/drive/MyDrive/IPO_AI/live_data/adapters/adapter_config.json",
+    "adapter": "/content/drive/MyDrive/IPO_AI/live_data/adapters/source_adapter.py",
+    "adapter_registry": "/content/drive/MyDrive/IPO_AI/live_data/adapters/adapter_registry.json",
+    "database": "/content/drive/MyDrive/IPO_AI/live_data/database/ipo_live_data.db"
+  },
+  "model_files": [
+    "/content/drive/MyDrive/IPO_AI/models/ipo_ai_v1_classifier.joblib",
+    "/content/drive/MyDrive/IPO_AI/models/ipo_ai_v1_regressor.joblib",
+    "/content/drive/MyDrive/IPO_AI/models/ipo_ai_v1_features.json",
+    "/content/drive/MyDrive/IPO_AI/models/ipo_ai_v1_config.json"
+  ],
+  "dashboard": "https://aryananand1416-blip.github.io/ipo-ai/",
+  "public_api": "https://productivity-counter-facing-nominations.trycloudflare.com",
+  "created_at": "2026-10-31_203106",
+  "note": "Step 22.11 previous attempt had 15 placeholders for 14 columns. Corrected version is not yet executed."
+}

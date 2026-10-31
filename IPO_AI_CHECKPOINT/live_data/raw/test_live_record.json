@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-10-31T20:21:21.585115+00:00",
+  "source": "TEST_SOURCE",
+  "exchange": "TEST",
+  "symbol": "IPO_AI_TEST",
+  "ipo_id": "TEST_001",
+  "ipo_name": "IPO AI Test Record",
+  "price": 100.0,
+  "open": 98.0,
+  "high": 102.0,
+  "low": 97.0,
+  "close": 100.0,
+  "volume": 10000,
+  "market_cap": null,
+  "status": "TEST"
+}
