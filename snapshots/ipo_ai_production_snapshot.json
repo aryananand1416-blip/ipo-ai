@@ -30,7 +30,9 @@
     "branch": "main",
     "commit": "b4a7633bae24cdbbc9b5272e5bab111d09cc8ccb",
     "remote": "origin",
-    "working_tree_clean": false
+    "working_tree_clean": false,
+    "verified_against_commit": "d7af778ac50426e555ca1f7703d9595756b3098e",
+    "verification_timestamp_utc": "2026-10-31T19:14:42.822647+00:00"
   },
   "production_files": [
     "models/ipo_ai_v1_classifier.joblib",
