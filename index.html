@@ -463,7 +463,7 @@ function renderDashboard() {
     let filtered = allIPOs.filter(ipo => {
 
         const name =
-            (ipo.IPO_Name || "").toLowerCase();
+            (ipo.ipo_name || ipo.IPO_Name || ipo.name || "").toLowerCase();
 
         return (
             name.includes(search) &&
@@ -562,7 +562,7 @@ function renderDashboard() {
 
                     <td>
                         <strong>
-                            ${ipo.IPO_Name || "Unknown IPO"}
+                            ${ipo.ipo_name || ipo.ipo_name || ipo.IPO_Name || ipo.name || ipo.name || "Unknown IPO"}
                         </strong>
                     </td>
 
